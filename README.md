@@ -25,7 +25,9 @@ worksheet.append(5)
 worksheet.save_row
 ```
 
-After saving a row all appended data is removed and you can start with a new row
+After saving a row all appended data is removed and you can start with a new row. 
+Please make sure there are only empty lines at the end of the spreadsheet as the first empty line is used to write the data.
+
 
 ### Worksheet ID
 
