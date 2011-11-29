@@ -1,10 +1,14 @@
 GSMetrics is a simple Gem to help you with pushing data into Google Spreadsheets.
 
+You can install it by calling
+
+```gem install gsmetrics```
+
 Development was started so we could run a cron job in regular intervals and push metrics data about Railsonfire to a Google Spreadsheet.
 
 To start using it simply run
 
-gsmetrics
+``` gsmetrics ```
 
 and follow the instructions given. You will have to create a new google API Project and after
 finishing all steps get code you can simply paste into your codebase.
@@ -20,6 +24,10 @@ worksheet << 1
 worksheet.append(5)
 worksheet.save_row
 ```
+
+After saving a row all appended data is removed and you can start with a new row
+
+### Worksheet ID
 
 You can find out what your worksheet_id is by going to
 
