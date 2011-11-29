@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gsmetrics (0.0.1)
+    gsmetrics (0.0.2)
 
 GEM
   specs:
