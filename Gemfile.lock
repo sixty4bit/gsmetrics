@@ -5,12 +5,16 @@ PATH
 
 GEM
   specs:
+    addressable (2.2.6)
     builder (3.0.0)
     httparty (0.8.1)
       multi_json
       multi_xml
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
     multi_json (1.0.3)
     multi_xml (0.4.1)
+    thor (0.14.6)
 
 PLATFORMS
   ruby
@@ -19,3 +23,5 @@ DEPENDENCIES
   builder
   gsmetrics!
   httparty
+  launchy
+  thor
