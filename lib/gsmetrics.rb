@@ -1,1 +1,1 @@
-require "gem/gsmetrics"
+require "gsmetrics/gsmetrics"
