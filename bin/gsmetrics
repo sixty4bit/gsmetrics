@@ -50,4 +50,4 @@ class GSMetrics < Thor
   end
 end
 
-GSMetrics.start
+GSMetrics.start [:setup]
