@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name              = "gsmetrics"
-  s.version           = "0.0.2"
+  s.version           = "0.0.3"
   s.platform          = Gem::Platform::RUBY
   s.authors           = ["Florian Motlik"]
   s.email             = ["flo@railsonfire.com"]
-  s.homepage          = "http://github.com/flomotlik/gsmetrics"
+  s.homepage          = "http://github.com/railsonfire/gsmetrics"
   s.summary           = "Gem for pushing data to Google Docs"
   s.description       = "Simple Way to open a Session with Google Docs and push data into a Google Spreadsheet Worksheet. We use it primarily for metrics, but it can be used for basically anything regarding google spreadsheets."
   s.rubyforge_project = s.name

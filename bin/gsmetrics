@@ -3,6 +3,7 @@ require "thor"
 require 'launchy'
 require 'httparty'
 require 'json'
+require 'crack'
 
 class GSMetrics < Thor
   desc "setup", "Helps in Setting up a google Oauth Token"
@@ -47,6 +48,17 @@ class GSMetrics < Thor
     say "  \"#{client_secret}\","
     say "  \"#{refresh_token}\""
     say ")"
+
+    say "\n\n"
+
+    document = ask "Id of Document you want to access:"
+
+    response = HTTParty.get("https://spreadsheets.google.com/feeds/worksheets/#{document}/private/full", :query => {"access_token" => tokens["access_token"], :v => "3.0"})
+    worksheets = Crack::XML.parse(response.body)
+    say "Code for creating a Worksheet"
+    worksheets["feed"]["entry"].each_with_index do |entry, index|
+      say "#{index}. #{entry["title"]} - session.worksheet(\"#{document}\", \"#{entry["id"].split("/").last}\")"
+    end
   end
 end
 
