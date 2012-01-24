@@ -30,6 +30,7 @@ Every row is added in one batch call, so only one HTTP request is sent for every
 You can also set the exact row in the worksheet the data should be saved into. This is very handy if you have a worksheet that you need to update repeatedly.
 
 The following example saves the worksheet to row nr 1. The rows start with 1 in Googledocs.
+
 ```ruby
 worksheet.save_row 5
 ```
@@ -37,6 +38,7 @@ worksheet.save_row 5
 The following example sets the number of rows in the worksheet beforehand and then disables the check if there is still a free row. By default gsmetrics checks
 if there is a free row at the end of the worksheet and if not adds one. If you know beforehand the number of rows you need (e.g. daily updated list of users) you can
 set the worksheet size and disable the check. This makes the upload process much faster, as the check doesn't have to be made before every new row is added.
+
 ```ruby
 set_worksheet_size 5
 worksheet.check_worksheet_size = false
@@ -54,8 +56,9 @@ You can find out what your worksheet_id is by going to
 
 https://spreadsheets.google.com/feeds/worksheets/#{your_document_id}/private/full
 
-For every worksheet there will be an <entry> element which has an id. The last part of the id (something like od6) is the worksheet_id you have to provide.
-If you find a better way to get that information or would implement an extension to the executable to go over the api and get that information you are very welcome.
+For every worksheet there will be an <entry> element which has an id. The last part of the id (something like od6) is the worksheet_id you have to provide. 
+The executable will give you a list of all worksheets for your document at the end of the setup process.
 
-Copyright (c) 2011 Florian Motlik
+Copyright (c) 2011-2012 Florian Motlik, licensed under MIT License
+
 Based on the gem template by https://github.com/goncalossilva/gem_template
