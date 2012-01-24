@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "gsmetrics"
-  s.version           = "0.0.3"
+  s.version           = "0.0.4"
   s.platform          = Gem::Platform::RUBY
   s.authors           = ["Florian Motlik"]
   s.email             = ["flo@railsonfire.com"]
@@ -11,8 +11,12 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
 
+  s.requirements << 'Thor and launchy gem need to be installed for the executable. Not adding them as a dependency for the whole library'
+
   # If you have runtime dependencies, add them here
-  # s.add_runtime_dependency "other", "~> 1.2"
+  s.add_runtime_dependency(%q<httparty>, [">= 0"])
+  s.add_runtime_dependency(%q<builder>, [">= 0"])
+  s.add_runtime_dependency(%q<crack>, [">= 0"])
 
   # If you have development dependencies, add them here
   # s.add_development_dependency "another", "= 0.9"
@@ -20,10 +24,7 @@ Gem::Specification.new do |s|
   # The list of files to be contained in the gem
   s.files         = `git ls-files`.split("\n")
   s.executables   = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
-  # s.extensions    = `git ls-files ext/extconf.rb`.split("\n")
 
   s.require_path = 'lib'
 
-  # For C extensions
-  # s.extensions = "ext/extconf.rb"
 end
