@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "gsmetrics"
-  s.version           = "0.0.4"
+  s.version           = "0.1.0"
   s.platform          = Gem::Platform::RUBY
   s.authors           = ["Florian Motlik"]
   s.email             = ["flo@railsonfire.com"]
@@ -11,12 +11,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
 
-  s.requirements << 'Thor and launchy gem need to be installed for the executable. Not adding them as a dependency for the whole library'
-
   # If you have runtime dependencies, add them here
-  s.add_runtime_dependency(%q<httparty>, [">= 0"])
-  s.add_runtime_dependency(%q<builder>, [">= 0"])
-  s.add_runtime_dependency(%q<crack>, [">= 0"])
+  s.add_dependency("google-spreadsheet-ruby", "~> 0.2.1")
 
   # If you have development dependencies, add them here
   # s.add_development_dependency "another", "= 0.9"

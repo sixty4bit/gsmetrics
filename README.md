@@ -6,58 +6,38 @@ You can install it by calling
 
 Development was started so we could run a cron job in regular intervals and push metrics data about Railsonfire to a Google Spreadsheet.
 
-To start using it simply run
-
-``` gsmetrics ```
-
-and follow the instructions given. You will have to create a new google API Project and after
-finishing all steps get code you can simply paste into your codebase.
-
 ## Usage
 
-Create a new GSMetrics Session and a worksheet, then append to it and save the row:
+Create a new GSMetrics Session and a worksheet, then append to it and create as many rows as you like:
 
 ```ruby
-session = GSMetrics::Session.new(client_id, client_secret, refresh_token)
-worksheet = session.worksheet document_id, worksheet_id
+session = GSMetrics::Session.new("YOUR_GOOGLE_USERNAME, "YOUR_GOOGLE_PASSWORD")
+session.worksheet "SPREADSHEET_TITLE, "WORKSHEET_TITLE"
 worksheet << 1
 worksheet.append(5)
-worksheet.save_row
+worksheet.next_row
+worksheet.append(10)
+worksheet.save
 ```
 
-Every row is added in one batch call, so only one HTTP request is sent for every row.
+You simply add to the current row with either ***<<*** or ***.append()***. When calling ***next_row*** the current data is stored away for later saving and you can start adding new items again.
 
-You can also set the exact row in the worksheet the data should be saved into. This is very handy if you have a worksheet that you need to update repeatedly.
+The whole worksheet is updated in one batch call, so only one HTTP request is sent.
 
-The following example saves the worksheet to row nr 1. The rows start with 1 in Googledocs.
+You can also set the exact row in the worksheet the data should be saved into. This is very handy if you have a worksheet that you need to update completely.
+
+The following example saves all rows you added starting with the row id of 5. So if you added 2 rows to the worksheet the rows 5 and 6 will be added/overwritten in the spreadsheet.
 
 ```ruby
-worksheet.save_row 5
+worksheet.save 5
 ```
-
-The following example sets the number of rows in the worksheet beforehand and then disables the check if there is still a free row. By default gsmetrics checks
-if there is a free row at the end of the worksheet and if not adds one. If you know beforehand the number of rows you need (e.g. daily updated list of users) you can
-set the worksheet size and disable the check. This makes the upload process much faster, as the check doesn't have to be made before every new row is added.
-
-```ruby
-set_worksheet_size 5
-worksheet.check_worksheet_size = false
-worksheet << 1
-worksheet.save_row
-```
+When you do not specify any row it will be automatically added to the end.
 
 After saving a row all appended data is removed and you can start with a new row.
-Please make sure there are only empty lines at the end of the spreadsheet as the first empty line is used to write the data.
 
 
-### Worksheet ID
-
-You can find out what your worksheet_id is by going to
-
-https://spreadsheets.google.com/feeds/worksheets/#{your_document_id}/private/full
-
-For every worksheet there will be an <entry> element which has an id. The last part of the id (something like od6) is the worksheet_id you have to provide. 
-The executable will give you a list of all worksheets for your document at the end of the setup process.
+###Authentication
+GSMetrics doesn't suppot OAUTH login with Google any more, as it was painful to implement and not worthwile for us. If you are interrested in having this we gladly accept a pull request.
 
 Copyright (c) 2011-2012 Florian Motlik, licensed under MIT License
 
