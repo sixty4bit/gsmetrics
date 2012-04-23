@@ -11,8 +11,8 @@ Development was started so we could run a cron job in regular intervals and push
 Create a new GSMetrics Session and a worksheet, then append to it and create as many rows as you like:
 
 ```ruby
-session = GSMetrics::Session.new("YOUR_GOOGLE_USERNAME, "YOUR_GOOGLE_PASSWORD")
-session.worksheet "SPREADSHEET_TITLE, "WORKSHEET_TITLE"
+session = GSMetrics::Session.new("YOUR_GOOGLE_USERNAME", "YOUR_GOOGLE_PASSWORD")
+session.worksheet "SPREADSHEET_TITLE", "WORKSHEET_TITLE"
 worksheet << 1
 worksheet.append(5)
 worksheet.next_row
