@@ -1,4 +1,4 @@
-require 'google_spreadsheet'
+require 'google_drive'
 
 module GSMetrics
   class Session
@@ -8,7 +8,7 @@ module GSMetrics
     end
 
     def worksheet doc_title, worksheet_id
-      Worksheet.new doc_title, worksheet_id, GoogleSpreadsheet.login(@email, @password)
+      Worksheet.new doc_title, worksheet_id, GoogleDrive.login(@email, @password)
     end
   end
 
