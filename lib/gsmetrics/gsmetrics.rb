@@ -8,17 +8,18 @@ module GSMetrics
     end
 
     def worksheet doc_title, worksheet_id
-      Worksheet.new doc_title, worksheet_id, GoogleDrive.login(@email, @password)
+      Worksheet.new doc_title, worksheet_id, @email, @password
     end
   end
 
 private
   class Worksheet
     attr_accessor :check_worksheet_size
-    def initialize doc_title, worksheet_title, session
+    def initialize doc_title, worksheet_title, email, password
       @doc_title = doc_title
       @worksheet_title = worksheet_title
-      @session = session
+      @email = email
+      @password = password
       @items = []
       @rows = []
     end
@@ -40,7 +41,7 @@ private
       next_row
       row_id ||= worksheet.num_rows + 1
 
-      worksheet.max_rows = row_id + @rows.size
+      set_worksheet_size(row_id + @rows.size)
 
       @rows.each_with_index do |items, row_index|
         items.each_with_index do |item, item_index|
@@ -55,8 +56,12 @@ private
       worksheet.max_rows = size
     end
 
+    def session
+      GoogleDrive.login(@email, @password)
+    end
+
     def worksheet
-      @worksheet ||= @session.spreadsheet_by_title(@doc_title).worksheet_by_title(@worksheet_title)
+      @worksheet ||= session.spreadsheet_by_title(@doc_title).worksheet_by_title(@worksheet_title)
     end
   end
 end
