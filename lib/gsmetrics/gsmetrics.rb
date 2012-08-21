@@ -16,7 +16,9 @@ private
   class Worksheet
     attr_accessor :check_worksheet_size
     def initialize doc_title, worksheet_title, session
-      @worksheet = session.spreadsheet_by_title(doc_title).worksheet_by_title(worksheet_title)
+      @doc_title = doc_title
+      @worksheet_title = worksheet_title
+      @session = session
       @items = []
       @rows = []
     end
@@ -30,27 +32,31 @@ private
     end
 
     def next_row
-      @rows << @items unless @items.empty?
+      @rows << @items
       @items = []
     end
 
     def save row_id = nil
       next_row
-      row_id ||= @worksheet.num_rows + 1
+      row_id ||= worksheet.num_rows + 1
 
-      @worksheet.max_rows = row_id + @rows.size
+      worksheet.max_rows = row_id + @rows.size
 
       @rows.each_with_index do |items, row_index|
         items.each_with_index do |item, item_index|
-          @worksheet[row_id + row_index, item_index + 1] = item
+          worksheet[row_id + row_index, item_index + 1] = item
         end
       end
-      put "Save failed" unless @worksheet.save
+      put "Save failed" unless worksheet.save
       @items = []
     end
 
     def set_worksheet_size size
-      @worksheet.max_rows = size
+      worksheet.max_rows = size
+    end
+
+    def worksheet
+      @worksheet ||= @session.spreadsheet_by_title(@doc_title).worksheet_by_title(@worksheet_title)
     end
   end
 end
