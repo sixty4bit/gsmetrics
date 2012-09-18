@@ -12,6 +12,8 @@ module GSMetrics
     end
   end
 
+  class Error < RuntimeError
+  end
 private
   class Worksheet
     attr_accessor :check_worksheet_size
@@ -50,6 +52,10 @@ private
       end
       @items = []
       worksheet.save
+    end
+
+    def save! row_id = nil
+      raise GSMetrics::Error.new('Save failed') unless save(row_id)
     end
 
     def set_worksheet_size size
