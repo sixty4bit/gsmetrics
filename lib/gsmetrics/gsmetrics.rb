@@ -53,7 +53,7 @@ private
     end
 
     def set_worksheet_size size
-      worksheet.max_rows = size
+      worksheet.max_rows = size unless worksheet.max_rows >= size
     end
 
     def session
