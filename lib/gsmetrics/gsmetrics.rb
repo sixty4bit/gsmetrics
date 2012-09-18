@@ -48,8 +48,8 @@ private
           worksheet[row_id + row_index, item_index + 1] = item
         end
       end
-      put "Save failed" unless worksheet.save
       @items = []
+      worksheet.save
     end
 
     def set_worksheet_size size
