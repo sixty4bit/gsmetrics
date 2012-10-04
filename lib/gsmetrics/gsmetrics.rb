@@ -12,7 +12,7 @@ module GSMetrics
     end
   end
 
-  class Error < RuntimeError
+  class Error < StandardError
   end
 private
   class Worksheet
