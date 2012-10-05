@@ -40,6 +40,7 @@ private
     end
 
     def save row_id = nil
+      return true if @rows.count == 0
       next_row
       row_id ||= worksheet.num_rows + 1
 

@@ -1,18 +1,18 @@
 PATH
   remote: .
   specs:
-    gsmetrics (0.1.5)
+    gsmetrics (0.1.6)
       google_drive (~> 0.3.1)
 
 GEM
   specs:
     faraday (0.8.4)
       multipart-post (~> 1.1)
-    google_drive (0.3.1)
+    google_drive (0.3.2)
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
-    httpauth (0.1)
+    httpauth (0.2.0)
     jwt (0.1.5)
       multi_json (>= 1.0)
     multi_json (1.3.6)
