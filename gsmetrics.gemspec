@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   # If you have runtime dependencies, add them here
-  s.add_dependency("google_drive", "~> 0.3.1")
+  s.add_dependency("google_drive", "~> 0.3.4")
 
   # If you have development dependencies, add them here
   # s.add_development_dependency "another", "= 0.9"
