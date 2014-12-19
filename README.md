@@ -12,7 +12,7 @@ Create a new GSMetrics Session and a worksheet, then append to it and create as 
 
 ```ruby
 session = GSMetrics::Session.new("YOUR_GOOGLE_USERNAME", "YOUR_GOOGLE_PASSWORD")
-session.worksheet "SPREADSHEET_TITLE", "WORKSHEET_TITLE"
+worksheet = session.worksheet "SPREADSHEET_TITLE", "WORKSHEET_TITLE"
 worksheet << 1
 worksheet.append(5)
 worksheet.next_row
